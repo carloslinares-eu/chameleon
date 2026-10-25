@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build output (python -m build, PyInstaller)
+build/
+dist/
+
+# Left behind only if Chameleon is killed in the middle of writing a photo
+*.chameleon-partial
+
+# IDE settings and exported inspection results stay local
+.idea/
+inspections/
+.vscode/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
