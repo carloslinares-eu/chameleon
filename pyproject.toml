@@ -1,15 +1,58 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "heic-to-jpg"
-version = "1.0.0"
-requires-python = ">=3.8"
+name = "chameleon-heic"
+dynamic = ["version"]
+description = "Convert iPhone HEIC photos to JPEG or PNG, keeping their date, colours and details."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Carlos Linares" }]
+keywords = ["heic", "heif", "jpeg", "png", "iphone", "photo converter", "tkinter"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications",
+    "Environment :: MacOS X",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Utilities",
+]
 dependencies = [
-    "Pillow",
-    "pillow-heif"
+    "pillow>=11.0",
+    "pillow-heif>=1.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pyinstaller>=6.0",   # packaging/chameleon.spec
+]
+
+[project.gui-scripts]
+chameleon = "chameleon.app:main"
+
 [project.scripts]
-heic-to-jpg = "heic_to_jpg:main"
+chameleon-cli = "chameleon.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/carloslinares-eu/chameleon"
+
+[tool.setuptools.dynamic]
+version = { attr = "chameleon.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["chameleon*"]
+
+[tool.setuptools.package-data]
+chameleon = ["assets/*.png", "assets/*.ico"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
